@@ -18,10 +18,12 @@
                 _age:100
             };
             Object.defineProperty(person,"name",{
-                writable:false,   
+                writable:false,
                 value:"qyc"
             })            
+            var descriptor = Object.getOwnPropertyDescriptor(person,"name").writable;
 
+            console.log(descriptor)
             console.log(person.name)
             person.name = "chy"
             console.log(person.name)
@@ -41,7 +43,11 @@
                 _year: 2014,
                 edition: 1
             };
-            Object.defineProperty(book,'year',{
+            Object.defineProperty(book,"year",{
+                writable:false,
+                configurable:false    
+            })
+            Object.defineProperty(book,'year',{     //上面 configurable 为false 所以不能修该为访问器属性
                 get:function () {  //get 读操作
                     // return this.year + 1; 报错，访问被自己设置的属性导致递归，栈溢出。    
                     return this._year + 1; 
@@ -56,6 +62,21 @@
             console.log(book.year,book._year)   //  这只是一个读操作，所以不会执行set 函数
             book.year = 2028;
             console.log(book._year,book.edition)
+            // ===================================
+            var anbook = {
+                _year: 2014,
+                edition: 1
+            };
+            anbook.__defineGetter__("year",function () {
+                return this._year + 5;
+            })
+            anbook.__defineSetter__("year",function () {
+                if(newValue > 2004) {
+                        this._year = newValue;
+                        this.edition += newValue - 2004;
+                    }
+            })
+            console.log(anbook.year,anbook._year)
             
         </script>
 </body>

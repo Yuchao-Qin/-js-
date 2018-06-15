@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         function Person (name,age,job) {
+            this.name = name;
+            this.age = age;
+            this.job = job;
+            }
+            Person.prototype.name1 = 'qyc';    //prototype 相当于抽象出来的全局对象，构造函数的每一个属性都可以访问prototype中的值。
+            Person.prototype.age1 = '22';       // 每一个函数都有一个prototype属性，prototype 里面有一个constructor属性又指回person
+            Person.prototype.job = 'programer';
+            Person.prototype.fn = function () {
+                console.log(this.age1+1)
+            }
+        
+
+            var person1 = new Person('chy','26','doctor')
+            console.log(person1)              //每个构造函数的实例 都有一个 __protp__ 属性 ，指向构造函数的原型而不是构造函数
+            console.dir(Person)
+            
+    </script>
+</body>
+</html>
+
+
+
+
