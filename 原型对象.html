@@ -14,7 +14,7 @@
             this.job = job;
             }
             Person.prototype.name1 = 'qyc';    //prototype 相当于抽象出来的全局对象，构造函数的每一个属性都可以访问prototype中的值。
-            Person.prototype.age1 = '22';       // 每一个函数都有一个prototype属性，prototype 里面有一个constructor属性又指回person
+            Person.prototype.age1 = '22';      // 每一个函数都有一个prototype属性，prototype 里面有一个constructor属性又指回person
             Person.prototype.job = 'programer';
             Person.prototype.fn = function () {
                 console.log(this.age1+1)
@@ -22,8 +22,11 @@
         
 
             var person1 = new Person('chy','26','doctor')
-            console.log(person1)              //每个构造函数的实例 都有一个 __protp__ 属性 ，指向构造函数的原型而不是构造函数
+            console.log(person1)              //每个构造函数的实例 都有一个 __proto__ 属性 ，指向构造函数的原型而不是构造函数
             console.dir(Person)
+            console.log(Object.getPrototypeOf(person1))  // 获取 person1 的  __proto__,也就是构造函数的原型
+            console.log(Person.prototype.isPrototypeOf(person1))   //  判断  person1 是否是 Person 的实例 ，返回布尔值。
+          
             
     </script>
 </body>
