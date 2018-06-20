@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Person() {
+            name:'haha'
+            age:'99'    
+        };
+
+        Person.prototype = {
+            constructor:Person,   //手动修复 constructor 指向，  这种方式导致constructor 属性可以被枚举
+            name:"Nicholas",
+            age:29,
+            job:"Software Engineer",
+            sayName:function () {
+                console.log(this.name)
+            }
+        }
+        var person1 = new Person()
+        console.log(person1.constructor)
+
+        // function Person (name,age,job) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.job = job;
+        //     }
+        //     Person.prototype.name1 = 'qyc';    //prototype 相当于抽象出来的全局对象，构造函数的每一个属性都可以访问prototype中的值。
+        //     Person.prototype.age1 = '22';      // 每一个函数都有一个prototype属性，prototype 里面有一个constructor属性又指回person
+        //     Person.prototype.job = 'programer';
+        //     Person.prototype.fn = function () {
+        //         console.log(this.age1+1)
+        //     }
+
+        //     var person2 = new Person()
+        //     console.log(person2)
+    </script>
+</body>
+</html>

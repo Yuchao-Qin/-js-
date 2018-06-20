@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 1.  它省略了为构造函数传递初始化参数这一环节，结果所有实例在默认的情况下都取得相同的属性值，
+    // 原型的最大问题是由共享的本性所导致的。对包含引用类型的属性来说尤为突出。
+
+    // 2.  所以  组合使用构造函数模式和原型模式。构造函数模式用于定义实例属性，
+    // 而原型模式用于定义方法和共享属性。结果每个实例都会有自己的一份实例属性副本，
+    // 但同时由共享着对方法的引用，最大限度的节省了内存。另这种混成模式还支持向构造函数传递参数。
+    
+    // 构造函数 实例
+    function Person (name,age,job) {
+        this.name = name;
+        this.age = age;
+        this.job = job;
+        this.friends = ["Shelby","Court"]
+    }
+    //  共享原型
+    Person.prototype = {
+        constructor : Person,
+        sayName : function () {
+            alert(this.name)
+        }
+    }
+
+    var person1 = new Person ("Nicholas",29,"Software");
+    var person2 = new Person ("Greg",39,"Doctor");
+
+    person1.friends.push("老王");
+    alert(person1.friends);
+    alert(person2.friends);
+    alert(person1.friends === person2.friends);
+    alert(person1.sayname === person2.sayname);
+    person1.sayName()
+    </script>
+</body>
+</html>    
