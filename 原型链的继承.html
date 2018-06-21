@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Person () {
+            this.old = '20';
+        }
+        Person.prototype.getOld = function () {
+            return this.old;
+        }
+
+
+        function Child () {
+            this.old = '4';
+        }
+        Child.prototype = new Person();
+        Child.prototype.getCold = function () {
+            return this.old
+        }
+
+        var peoples = new Child();
+        console.log(peoples.getOld())
+        console.log(new Child())//相当与替换的Child 的构造函数    
+        console.log(new Person())
+        console.dir(new Child())
+        
+        
+    </script>
+</body>
+</html>
