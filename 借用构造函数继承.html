@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function SuperType () {
+        this.color = ["red","blue"];
+        this.ac = function() {
+            console.log(1)
+        }
+    }
+
+    function SubType () {
+        SuperType.call(this);
+    }
+
+    new SubType() 
+    // 解决的非共享属性（引用类型的问题）  可以穿参数
+    // 问题 函数复用的问题
+    </script>
+
+</body>
+</html>
