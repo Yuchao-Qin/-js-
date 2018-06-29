@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <script>
+        // var singleton = 111
+        var singleton = function abc () {
+        //私有变量和私有函数
+        
+            var privateVariable = 10;
+            
+            function privateFunction() {
+                return false
+            }
+            //特权/公有方法和属性
+            return {
+                publicProperty:true,
+                
+                publicMethod:function() {
+                    privateVariable++;
+                    return privateFunction();
+                }
+            }
+        }();
+
+        console.log(singleton)
+        console.log(abc)
+       
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function Myobject () {
+        //     //私有变狼和私有函数
+        //     var privateVariable = 10;
+
+        //     function privateFunction () {
+        //         return false;
+        //     }
+
+        //     //特权方法
+        //     this.publicMethod = function () {
+        //         return privateVariable ++;
+        //         // return privateFunction();
+        //     }
+        // }
+        // var accssprivate = console.log(new  Myobject().publicMethod());
+        
+
+        //静态私有变量
+        (function () {
+
+            //私有变量和私有函数
+            var privateVariable = 10;
+
+            function parivateFunction() {
+                return false;
+            }
+            
+            //构造函数
+            MyObject = function() {var a='1'};
+
+            MyObject.prototype.publicMethod = function() {
+                privateVariable ++;
+                return parivateFunction()
+            };
+
+            var sb = new MyObject().publicMethod()
+            console.log(privateVariable);
+        })();
+      
+    </script>
+</body>
+</html>
