@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="t2">2222222222</div>
+    <script>
+
+  
+    // 浏览器窗口 距离屏幕的距离
+    window.resizeTo(200,200)  //被禁用
+    var resWin = '';
+    document.onclick = function () {
+        resWin = window.open("https://www.baidu.com/" ,"leftFrame",'width=100,height=100')
+        setTimeout(" resWin.close()",1000)
+    }
+
+    </script>
+</body>
+</html>
