@@ -7,16 +7,12 @@
     <title>Document</title>
 </head>
 <body>
+    <div>生活平淡的有点烦</div>
+    <p>This is some content that you won't get to see because it will be overwritten.</p>
     <script>
-     var win = window.open();
-     console.log(win.opener); //指向打开新网页的原始窗口
-    
-    
-    
-     //  新页面存储在window中的函数，
-     win.abab = function () {
-         console.log(1111)
-     }
+        window.onload = function () {
+            document.write("<strong>" + (new Date()).toString() + "</strong>"); 
+        }
     </script>
 </body>
 </html>

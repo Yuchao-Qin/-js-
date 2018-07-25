@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="aaa"></div>
+    <div>
+        <a href="111">111</a>
+    </div>
+    <script>
+        var Body = document.documentElement;
+        // 类数组对象转化成数组
+        var array = Array.prototype.slice.call(Body.childNodes,0);
+        console.log(array)
+        // var aaa = document.getElementsByClassName('aaa')[0];
+        // console.log(aaa.nodeType == Node.ELEMENT_NODE);
+        
+    </script>
+</body>
+</html>

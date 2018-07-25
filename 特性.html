@@ -7,16 +7,10 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="abc"></div>
     <script>
-     var win = window.open();
-     console.log(win.opener); //指向打开新网页的原始窗口
-    
-    
-    
-     //  新页面存储在window中的函数，
-     win.abab = function () {
-         console.log(1111)
-     }
+        var oDiv = document.getElementsByClassName('abc')[0];
+        oDiv.setAttribute('sb','123')
     </script>
 </body>
 </html>
