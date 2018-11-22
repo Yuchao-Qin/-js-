@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form name="form">
+        <select name="contry" id="contry">
+            <option value="china">中国</option>
+            <option value="riben">日本</option>
+            <option value="meiguo">美国</option>
+            <option value="yingguo">英国</option>
+        </select>
+    </form>
+    <script>
+        var selectBox = document.forms[0].elements['contry'];
+        for (var i = 0,len = selectBox.options.length; i < len; i++ ) {
+    selectBox.remove(0);
+    console.log(i)
+        }
+    </script>
+</body>
+</html>

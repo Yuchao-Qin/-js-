@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="GET" name="fromh" id="hk">
+        <input value="1111" name = "hihi">
+        <input value="11112323" name = "hihi">
+        <input type="button" name = "houhou">
+    </form>
+    
+    <script>
+        var form = document.forms[0];
+        var form = document.forms['fromh'];
+        console.log(form.elements['hihi'],form.elements['houhou']['clientHeight'])
+        console.log(form.elements)
+        console.log(form.elements['0'])
+        console.log(form.elements['hihi'][0])
+        alert(d)
+    </script>
+</body>
+</html>

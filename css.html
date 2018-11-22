@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css.css">
+</head>
+<style>
+    /* .box {
+        color: red;
+    } */
+    .cox1 {
+        color: beige
+    }
+</style>
+
+<body>
+    <div class="box"></div>
+</body>
+<script>
+    // window.onload = function () {
+        var sheet = document.styleSheets[0];
+        var rules = sheet.cssRules || sheet.rules;
+        console.log(sheet)
+        sheet.insertRule("body {background-color:silver}",0)
+    // }
+
+// var rule = rules[0];
+// console.log(rule.selectorText);
+    function getViewport () {
+        if (document.compatMode == "BackCompat") {
+            return {
+                width: document.documentElement.clientWidth,
+                height: document.body.clientHeight
+            }
+        } else {
+            return {
+                width:document.documentElement.clientWidth,
+                height:document.body.clientHeight
+            }
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button data-id="haha">123456<div>骚</div></button>
+    <script>
+     var btn = document.querySelectorAll('button');
+     var btn1 = document.getElementsByTagName('button');
+     var divs = document.getElementsByTagName('div');
+     var divs1 = document.querySelectorAll('div');
+     var div0 = document.querySelector('div')
+
+    btn[0].focus();
+    console.log(document.activeElement);   //始终引用当前dom中获得焦点的元素
+    console.log(document.hasFocus());      //只有document才有的方法，用来检测document是否获得了焦点
+    console.log(document.readyState);
+    console.log(btn[0].dataset.id); //获取自定义属性值
+    console.log(btn[0].dataset); 
+
+
+
+    btn[0].onclick = function () {
+        btn[0].dataset.id = 'heiheihei';
+        var div = document.createElement('div');
+        div.innerHTML = '骚';
+        btn[0].appendChild(div);
+        btn[0].firstElementChild.className = 'gjb'
+        // console.log(btn[0].querySelectorAll());
+        console.log(divs1.length,div0,divs.length)
+
+
+    //     for (var i = 0 ;i<divs1.length;i++) {
+    //     btn[0].dataset.id = 'heiheihei';
+    //     var div = document.createElement('div');
+    //     div.innerHTML = '骚';
+    //     btn[0].appendChild(div);
+    //     console.log(1)
+    // }
+    }
+
+    // for (var i = 0 ;i<divs1.length;i++) {
+    //     btn[0].dataset.id = 'heiheihei';
+    //     var div = document.createElement('div');
+    //     div.innerHTML = '骚';
+    //     btn[0].appendChild(div);
+    //     console.log(1)
+    // }
+    // window.onload = function () {
+    //     if (document.readyState == 'complete') {    //文档加载状态，需要借助 onload 事件处理程序
+    //         alert('文档加载完毕')
+    //     }
+    // }
+
+    // querySelectAll().childNodes 还是动态的   
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<!-- <link rel="stylesheet" href="/view/print/css/clfht.css"> -->
+<style type="text/css">
+    html, body, div, span, applet, object, iframe, 
+    h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed, 
+    figure, figcaption, footer, header, hgroup, 
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        /* font-size: 100%; */
+        /* font: inherit; */
+        vertical-align: baseline;
+    }
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure, 
+    footer, header, hgroup, menu, nav, section {
+        display: block;
+    }
+    body {
+        line-height: 1;
+    }
+    ol, ul {
+        list-style: none;
+    }
+    blockquote, q {
+        quotes: none;
+    }
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+        content: '';
+        content: none;
+    }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    body{
+        width: 780px;
+        /* height: 100%; */
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+    }
+    html {
+        /* height: 100%; */
+        text-align: center;
+    }
+
+    .header {
+        font-size: 20px;
+        line-height: 20px;
+    }
+
+    .printwrap{
+        width: 95%;
+        margin: auto;
+        position: relative;
+        top: 0;
+        bottom: 0;
+        padding-top: 35px;
+        height:  20%;
+        text-align: center;
+        padding: 0;
+    }
+
+    .printwrap .header {
+        text-align: right;
+        width: 70%;
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+
+    h1 {
+        margin-bottom: 300px;
+        font-size: 55px;
+    }
+
+    .printwrap-form {
+        text-align: center;
+        margin-bottom:200px;
+    }
+
+    .printwrap-form span {
+        font-size: 18px;
+        line-height: 52px;
+    }
+
+    .printwrap-form li span:last-child {
+        width: 300px;
+    }
+
+    .bottom-line {
+        border-bottom: 1px solid #000;
+        display: inline-block;
+    }
+
+    .jianzhi {
+    }
+
+    .jianzhi div{
+    }
+    .jianzhi h4{
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .jianzhi div:last-child{
+        font-size: 20px;
+        font-weight: 800;
+        line-height: 44px;
+    }
+
+    .pageNumber {
+        margin-top: 20px;
+    }
+
+    .printwrap2{
+        width: 80%;
+        margin: auto;
+        padding-top: 35px;
+        padding: 0;
+    }
+    p{
+        text-indent: 2em;
+        font-size: 20px;
+        line-height: 28px;
+        text-align: left;
+    }
+
+     h2{
+        /* font-size: 18px; */
+        line-height: 25px;
+        text-align: left;
+        padding-top: 100px;
+        padding-bottom: 10px;
+        align-items: center;
+        width: 100%;
+        text-align: center;
+    }
+
+    .blod {
+        font-weight: 500;
+    }
+
+     .footer{
+        font-size: 18px;
+        line-height: 25px;
+        text-align: left;
+        /* flex-grow:2;  */
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+
+    .printwrap3{
+        width: 80%;
+        margin: auto;
+        padding-top: 35px;
+        padding: 0;
+    }
+    .printwrap3 p{
+        text-indent: 2em;
+        font-size: 20px;
+        line-height: 32px;
+        text-align: left;
+    }
+
+    /* .printwrap3 h2{
+        font-size: 18px;
+        line-height: 25px;
+        text-align: left;
+        margin-top: 40px;
+        align-items: center;
+        width: 100%;
+        text-align: center;
+    } */
+
+    /* .printwrap3 footer{
+        font-size: 18px;
+        line-height: 25px;
+        text-align: left;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    } */
+
+    .printwrap4{
+        width: 80%;
+        margin: auto;
+        padding-top: 35px;
+        height:  20%;
+        padding: 0;
+    }
+    .printwrap4 p{
+        text-indent: 2em;
+        font-size: 20px;
+        line-height: 30px;
+        text-align: left;
+    }
+
+    .printwrap4 h2{
+        font-size: 18px;
+        line-height: 25px;
+        text-align: left;
+        margin-top: 40px;
+        align-items: center;
+        width: 100%;
+        text-align: center;
+    }
+
+    .printwrap4 .footer{
+        font-size: 18px;
+        line-height: 25px;
+        text-align: left;
+        /* flex-grow:2;  */
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    .printwrap5,.printwrap6{
+        width: 80%;
+        margin: auto;
+        padding-top: 35px;
+        padding: 0;
+    }
+    .printwrap5 p{
+        text-indent: 2em;
+        font-size: 20px;
+        line-height: 32px;
+        text-align: left;
+        /* flex-grow:1;  */
+    }
+    .printwrap5 p u{
+        text-indent: 2em;
+        font-size: 18px;
+        line-height: 34px;
+        text-align: left;
+        /* flex-grow:1;  */
+    }
+
+    .printwrap5 h2{
+        font-size: 18px;
+        line-height: 25px;
+        text-align: left;
+        /* flex-grow:2;  */
+        margin-top: 40px;
+        align-items: center;
+        width: 100%;
+        text-align: center;
+    }
+
+    .printwrap5 .footer{
+        font-size: 18px;
+        line-height: 25px;
+        text-align: left;
+        /* flex-grow:2;  */
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+    
+    .line {
+        font-weight:50;
+        vertical-align: bottom;
+    }
+
+    .blockR,.blockL {
+        display: inline-block;
+        width: 49%;
+        vertical-align: top;
+    }
+    .blockR p,.blockL p{
+        text-indent: 0;
+        line-height: 40px;
+    }
+
+    .model5 {
+        text-align: left;
+    }
+
+    .warn {
+        width: 65%;
+        border: 3px solid #000;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 300;
+        padding: 5px;
+        margin: 50px;
+        margin-right: 0;
+    }
+
+    .dotted {
+        border-bottom:1px dotted #000; 
+    }
+
+    .printwrap6 p{
+        text-indent: 0;
+    }
+
+    .printwrap6 h2{
+        line-height: 25px;
+        text-align: left;
+        padding-top: 100px;
+        padding-bottom: 150px;
+        align-items: center;
+        width: 100%;
+        text-align: center;
+    }
+</style>
+<body>
+<div class="printwrap">
+    <div class="header">HFJ-2018-4（2）</div>
+    <h1>房 地 产 经 纪 合 同</h1>
+    <ul class="printwrap-form">
+        <li><span>委 托 人（乙方）：_______________________________________</li>
+        <li><span>经 纪 人（甲方）：<u>合肥叁陆零房产投资咨询有限公司&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u></span></li>
+        <li><span>签&nbsp; &nbsp;&nbsp;订&nbsp; &nbsp;&nbsp;地&nbsp;&nbsp;&nbsp;点 ：_______________________________________</span></li>
+        <li><span>合&nbsp; &nbsp;&nbsp;同&nbsp; &nbsp;&nbsp;编&nbsp;&nbsp;&nbsp;号 ：_______________________________________</span></li>
+    </ul>
+    <div class="jianzhi" style="width:270px;margin: auto;">
+        <div style="display: inline-block;">
+            <h4 style="width:190px;letter-spacing: 2px;">合肥市房地产管理局</h4>
+            <h4 style="width:190px;">合肥市工商行政管理局</h4>
+        </div>
+        <div style="display: inline-block;vertical-align: top;margin-top: 11px;">监制</div>
+    </div>
+    <div class="pageNumber">1</div>
+</div>
+
+<div class="printwrap2" style="PAGE-BREAK-BEFORE:always;">
+    <h2>签约须知</h2>
+    <p class="blod">一、 本合同由合 肥市房地产管理局、合肥市工 商行政管理局根据《中华人民共和国合同法》、《中华人民共和国城市房地产管理法》等法律法规制定的示范文本。</p>
+    <p class="blod">二、本合同使用范围</p>
+    <p>1、 在合肥市从事房地产经纪活动的房地产经纪人;</p>
+    <p>2、存量房(二手房)的房地产转让或房屋租赁。</p>
+    <p class="blod">三、 合同内的空格由 当事人商定后如实填写; [&nbsp;&nbsp; ]内 容为并列的选择项，可根据实际选择，不予选择的划除。</p>
+    <p class="blod">四、当事人应按自愿平等、协商一致的原则订立房地产经纪合同。委托人在订立房地产经纪合同时，应向经纪人如实告知以下问题:</p>
+    <p>1、房屋瑕疵。指房屋漏水、管道不通等</p>
+    <p>2、 共有关系。指两个以上权利人共同拥有同一房地产。如系共有，转让房地产或出租房屋时需全体共有人签字。</p>
+    <p>3、 房屋租赁情况。转让已出租房屋的，出卖人应当在出售前三个月书面通知承租人，承租人在同等条件下有优先购买权。</p>
+    <p>4、房地产抵押情况。指房地产所有权人为担保债权人债权的实现，将房地产抵押给债权人，办理了抵押登记。在转让前应先办理他项权利注销手续或出具抵押权人同意转让的书面证明。</p>
+    <p class="blod">五、在签订房地产转让、房屋租赁合同时，房地产经纪人(丙方)可将房地产经纪合同(之一、之二)的所有条款告知合同委托人(甲方、乙方)。</p>
+    <p class="blod">六、当事人在签订本合同时，应认真阅读所有条款，知悉其含义。若需代理人签订本合同时，应出具委托书，未出具委托书应承担相关法律责任。</p>
+    <p class="blod">七、市房地产局实行的存量房资金托管是确保房屋买卖当事人资金安全的唯一有效手段。咨询电话;产权监理处62617115，瑶海分局64233327，庐阳分局6264097262638220，蜀山分局62811516 62821485， 包河分局63358010，徽商银行合肥分行62614857，工行城建支行62651341 64669928，监督电话: 62648001</p>
+    <p class="blod">八、本合同条款由监制单位负责解释。</p>
+    <div class="footer">2</div>
+</div>
+
+<div class="printwrap3" style="PAGE-BREAK-BEFORE:always;">
+    <h2>房地产经纪合同(之二)</h2>
+    <p>委托人(乙方)：<span style="font-weight:50;vertical-align: bottom;">________________________________________</span></p>
+    <p>经纪人(丙方)：<u>合肥叁陆零房产投资咨询有限公司&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&thinsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u></p>
+    <p>根据《中华人民共和国合同法》和《中华人民共和国城市房地产管理法》及相关法律法规规定经己、丙双方协商一致，就房地产交易经纪事宜订立本合同，以资共同遵守。</p>
+    <p><span class="blod">第一条</span> 乙方委托丙方[买受][承租]座落在;合肥市<span class="line">______</span>区<span class="line">______</span>[小区]<span class="line">______</span>号附近的[住宅][商业用房][&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]提供以下服务：(下列事项供委托人选择)</p>
+    <p>(一)提供订约信息;</p>
+    <p>(二)充当订约介绍人;</p>
+    <p>(三)协助、指导订立[《存量房买卖合同》][《房屋租赁合同》];</p>
+    <p>(四)协助办理房地产交易手续;</p>
+    <p>(五)协助办理其他手续[户口转移][水表过户][电表过户][煤气过户][&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;][&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;];</p>
+    <p>(六)<span class="line">_____________________________________________________</span></p>
+    <p><span class="blod">第二条</span> 委托期限从___年___月___日至___年___月___日止。</p>
+    <p><span class="blod">第三条</span> 乙方拟[买受房地产][承租房屋]的基本情况;</p>
+    <p>(一)拟[买受][承租]房屋建筑面积;______平方米至______平方米，建成年份:______年以后，层次:______层至______屋，房屋结构;_______、_______，土地所有权为:[国有][集体所有]，[买受房地产][承租房屋]的价格____________元/平方米左右;</p>
+    <p>(二)经交易双方确认[买受房地产][承租房屋]的价格人民币大写[__________________元][__________________元/年]。元/年</p>
+    <p class="blod">第四条乙、丙双方的权利义务</p>
+    <p>(一)乙方应与丙方到相关部门查验有关资料和到现场勘察房地产现状，丙方认为无此必要除外。</p>
+    <div class="footer">3</div class="footer">
+</div>
+
+<div class="printwrap4" style="PAGE-BREAK-BEFORE:always;padding-top:50px;">
+    <p>(二)乙方应于本合同签订后_____日内向丙方提交办理[房地产转让][房屋租赁]相关资料的复印件。1、身份证;2、户口本;3、结婚证;4、个人证信报告;5、流水;6、收入证明。</p>
+    <p>(三)乙方应配合丙方签订[《存量房买卖合同》][(房屋租赁合同》]。</p>
+    <p>(四)乙方应配合丙方到相关部门办理[房地产转让][房屋租赁]相关手续。</p>
+    <p>(五)丙方(房地产经纪人)在从事房地产经纪活动时,应出示房地产经纪人《执业证书》和《企业法人营业执照》。乙方对出示有异议应提出书面意见。</p>
+    <p>(六)丙方对乙方提供房地产经纪合同(之一),并据实介绍房地产信息及房地产交易价格。</p>
+    <p>(七)丙方可配合乙方到现场勘察房地产现状,并告知房屋有无漏水、管道不通等瑕疵和房地产是否已经抵押、房屋是否已经租赁等情况。乙方若有异议应提供书面意见。</p>
+    <p>(八)丙方应告知乙方:房地产交易相关部门应收取的税金、房屋维修基金、费用标准及办事时限。乙方若有异议应提供书面意见。</p>
+    <p>(九)丙方应协助、指导乙方签订[《存量房买卖合同》][《房屋租赁合同》]。</p>
+    <p>(十)丙方应协助乙方到[房地产管理部门][土地管理部门]办理相关手续。</p>
+    <p>(十一)丙方在进行乙方委托事项同时,按物价部门核定的收费标准向乙方收取中介服务手续费_____元。不得收取其他费用</p>
+    <p class="blod">第五条乙、丙双方的违约责任</p>
+    <p>(一)本合同第四条(一)至(四)项,乙方应按约定做到,特殊情况应在____日内告知丙方,取得丙方书面同意,否则若因此导致房地产无法正常交易,乙方应向丙方支付违约金________元。并承担仲裁诉讼和代理费。</p>
+    <p>(二)本合同第四条(五)至(十)项,丙方应按约定做到,特殊情况应在____日内告知乙方,并取得乙方书面同意,否则导致房地产无法正常交易,丙方应向乙方支付违约金_________元。</p>
+    <p>单方解除本合同,由违约方支付违约金_________元。并承担仲裁诉讼和代理费。</p>
+    <div class="footer">4</div class="footer">
+</div>
+
+<div class="printwrap5" style="PAGE-BREAK-BEFORE:always;padding-top: 50px;"> 
+    <p><span class="blod">第六条</span> 合同纠纷的解决方式</p>
+    <p>本合同在履行过程中发生的争议,由双方当事人协商解决;也可由房地产管理部门或工商行政管理部门调解。协商不成或调解不成的,按下列第_________种方式解决:</p>
+    <p>1、依法向合肥仲裁委员会申请仲裁;</p>
+    <p>2、依法向人民法院起诉。</p>
+    <p><span class="blod">第七条</span> 本合同未尽事宜可另行约定。</p>
+    <p><span class="blod">第八条</span> 本合同一式三份,乙、丙双方及房地产局各执一份。</p>
+    <p><span class="blod">第九条</span> 其他约定条款</p>
+    <p>(一)<u>乙方承诺无不良证信记录&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u></p>
+    <p>(二)<u>请在过户前交清代理费及贷款费用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u></p>
+    <p>(三)<u>乙方应提供真实有效的材料,如有不实将自行承担相关法律责任&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u></p>
+    <p><span class="blod">第十条</span> 本合同自己、丙双方签订之日起生效。</p>
+    <div class="model5">
+        <div class="blockR">
+            <p>委托方(乙方)签章:</p>
+            <p>证件名称：________________</p>
+            <p>证件号码：________________</p>
+            <p>联系电话：________________</p>
+            <p>代理人签字：</p>
+            <p>证件名称：________________</p>
+            <p>证件号码：________________</p>
+            <p>联系电话：________________</p>
+            <p>共有人签字：______________</p>
+            <p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;______________</p>
+            <p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;______________</p>
+            <p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;______________</p>
+        </div>
+        <div class="blockL">
+            <p>委托方(乙方)签章:</p>
+            <p>经纪人签字：_______________</p>
+            <p>执业证号码：_______________</p>
+            <p>联系电话：&emsp;________________</p>
+            <div class="warn">甲乙双方提供材料真实有效如有不实责任自负</div>
+        </div>
+    </div>
+    <p style="text-align:right;margin-top: 50px;margin-bottom: 20px;">签订时间：&emsp;&emsp;&emsp;年&emsp;&emsp;&emsp;月&emsp;&emsp;&emsp;日</p>
+    <div class="footer">5</div class="footer">
+</div>
+
+<div class="printwrap6" style="PAGE-BREAK-BEFORE:always;">
+    <h2>附件</h2>
+    <p class="blod">一、房屋内附属设备状况及装饰情况</p>
+    <p class="dotted">&nbsp;</p>
+    <p style="padding-top:10px;">（粘贴线）&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;（骑缝盖章处）</p>
+    <!-- <p>2、依法向人民法院起诉。</p> -->
+    <p style="padding-top:50px;height: 130px;">附属设施：</p>
+    <p style="height:130px;">设备：<u>空调挂机叁台，冰箱壹台，洗衣机壹台</u></p>
+    <p style="height: 130px">室内装饰：<u>固定装修，厨卫全套</u></p>
+    <p class="blod" style="height:170px">二、</p>
+    <!-- <p>(一)<u>乙方承诺无不良证信记录&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&thinsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&thinsp;</u></p>
+    <p>(二)<u>请在过户前交清代理费及贷款费用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&thinsp;&nbsp;&nbsp;&nbsp;</u></p>
+    <p>(三)<u>乙方应提供真实有效的材料,如有不实将自行承担相关法律责任&nbsp;&nbsp;&nbsp;&nbsp;</u></p>
+    <p>第十条 本合同自己、丙双方签订之日起生效。</p> -->
+    <!-- <p style="text-align:right;">签订时间：&emsp;&emsp;&emsp;年&emsp;&emsp;&emsp;月&emsp;&emsp;&emsp;</p>
+    <div class="footer">51</div class="footer"> -->
+        <!-- ------ -->
+        <div class="footer">6</div class="footer">
+</div>
+
+</body>
+</html>

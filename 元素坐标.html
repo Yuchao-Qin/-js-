@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getBoundingClientRect(element) {
+            if (typeof arguments.callee.offset != "number") {
+                var scrollTop = document.documentElement.scrollTop;
+                var temp = document.createElement("div");
+                temp.style.cssText = "position:absolute;left:0;top:0;";
+                document.body.appendChild(temp);
+                arguments.callee.offset = -temp.getBoundingClientRect().top - scrollTop;
+                document.body.removeChild(temp);
+                temp = null;
+            }
+            var rect = element.getBoundingClientRect();
+            var offset = arguments.callee.offset;
+            return {
+                letf:rect.left + offset,
+            }
+
+        }
+        
+
+        function getElementTop (element) {
+            var actualTop = element.offsetTop;
+            var current = element.offsetParent;
+
+            while (current !== null) {
+                actualTop += current.offsetTop;
+                current = current.offsetParent;
+            }
+        }
+        
+//遍历
+
+    </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+  <style>
+    .animation {
+      width: 50px;
+      height: 50px;
+      background-color: #ed3;
+      -webkit-transition:  all 2s;
+           -o-transition:  all 2s;
+              transition:  all 2s;
+    }
+    .animation:hover {
+        -webkit-transition:  all 2s cubic-bezier(.75,-0.21,0,-0.48);
+       -o-transition:  all 2s cubic-bezier(.17, .86, .73, .14);
+          transition:  all 2s cubic-bezier(.17, .86, .73, .14);
+    }
+  </style>
+</head>
+<body>
+  <div class="animation"></div>
+</body>
+</html>
+
+<!-- {"ease":".25,.1,.25,1","linear":"0,0,1,1","ease-in":".42,0,1,1","ease-out":"0,0,.58,1","ease-in-out":".42,0,.58,1",".45,0,0,1":".45,0,0,1"} -->

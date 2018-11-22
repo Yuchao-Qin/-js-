@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="drawing" width="200" height="200">浏览器不支持canvas或操作系统缺少绘图驱动</canvas>
+    <script>
+        //取得绘图上下文
+        // toDataUrl() 方法可导出<canvas>元素上绘制的图像，这个方法接受一个参数即图像的MIME类型的格式
+        var drawing = document.getElementById('drawing');
+        if (drawing.getContext) {
+            var context = drawing.getContext("2d");
+            var imgURI = drawing.toDataURL("image/png");
+            var image = document.createElement("img");
+            image.src = imgURI;
+            document.body.appendChild(image);
+        }
+    </script> 
+</body>
+</html>

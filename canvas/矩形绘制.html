@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="drawing" width="200" height="200"></canvas>
+    <script>
+        /* 
+        *矩形是唯一一种可以直接在2d上下中绘制的形状
+        *与矩形相关的方法包括fillRect()、strokeRect()、clearRect()这三个方法都能接收4个参数：矩形的x坐标、矩形的y坐标、矩形宽度和矩形的高度，这些参数的单位都是像素
+        *
+        */
+    //fillRect() 方法在画布上绘制矩形填充指定颜色，填充的颜色通过fillStyle属性指定
+    var drawing = document.getElementById("drawing");
+    if (drawing.getContext) {
+        var context = drawing.getContext("2d");
+        // 绘制红色矩形
+        context.strokeStyle = "#ff0000";
+        context.strokeRect(10, 10, 50, 50);
+        context.lineWidth = "100"
+        // 绘制蓝色矩形
+        context.fillStyle = "rgba(0, 0, 255, 0.5)";
+        context.fillRect(30, 30, 50, 50);
+    }
+
+    </script>
+</body>
+</html>
