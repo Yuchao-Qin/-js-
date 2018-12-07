@@ -1,11 +1,11 @@
 function DetailMap(d){
     this._wrapdom=d._wrapdom;
-    this.xq_data=d.xq_data;=======
+    this.xq_data=d.xq_data;
 
     this.init=function(){
         this.iframeMap();
     };
-    this.iframeMap= function () {
+    this.iframeMap= function (){
         this.initMapContainer();
         this.registMapEvent();
         this.mapTabToView();
@@ -18,6 +18,7 @@ function DetailMap(d){
         this._map.enableKeyboard();         // 开启键盘控制
         this._map.enableContinuousZoom();   // 开启连续缩放效果
         this._map.enableInertialDragging(); // 开启惯性拖拽效果
+        // this._map.centerAndZoom(this._city,14);	// 初始化地图
 
         this._buscanvas = $(this._wrapdom).find("#bus-map").get(0);
         this._ditiecanvas = $(this._wrapdom).find("#ditie-map").get(0);
@@ -48,21 +49,29 @@ function DetailMap(d){
             mapname=new BMap.Map(v.dom,{enableMapClick:false});//配套部分地图
             HubObj.mapDomArr.push({key:v.key,value:mapname,circle:'',marker:[]});
             mapname.enableScrollWheelZoom();
-            mapname.centerAndZoom(HubObj.cityname, 14);
 
         },this);
     };
     this.registMapEvent= function(){
         //注册地图事件
-
+        var __t=this;
         this.createMarkMap();
         this._map.addEventListener("tilesloaded",function(e){
             // 防止黑块
-            $('#marpWrap').css('visibility','visible');
+            $('#baidu-map').css('visibility','visible');
+            if(!__t.isload){
+                __t.isload=true;
+                __t.loadPeitaoToDetail();
+            }
         });
     };
     this.createMarkMap= function(){
-        this.searchMarkMap(HubObj.cityname);
+        if(this.xq_data.lat && this.xq_data.lng){
+            this._createMarkMap(null, this.xq_data.lng , this.xq_data.lat);
+        }else{
+            this.searchMarkMap(HubObj.cityname);
+        }
+
     };
     this.searchMarkMap= function(data,type){
         var __t=this;
@@ -74,8 +83,6 @@ function DetailMap(d){
             }
             var poi = rs.getPoi(0);
             var point = poi.point;
-            HubObj.lat=point.lat;
-            HubObj.lng=point.lng;
             __t._createMarkMap(null, point.lng, point.lat,type);
         });
         local.search($_C.cityname+data);
@@ -83,8 +90,9 @@ function DetailMap(d){
     this._createMarkMap= function(point, posx, posy, type){
         var __t=this;
         if(!point){
-            HubObj.lat=posy;
             HubObj.lng=posx;
+            HubObj.lat=posy;
+
             point = new BMap.Point(posx, posy);	// 创建点坐标
         }
         this._map.centerAndZoom(point, 16);	// 初始化地图
@@ -94,11 +102,12 @@ function DetailMap(d){
         this._marker.enableDragging(true); // 设置标注可拖拽
         this._marker.setZIndex(1000);
         this._marker.addEventListener("dragend",function(){
-            __t.markPointToMap(__t._marker,type);
+            __t.markPointToMap(__t._marker);
         });
-        this._marker.addEventListener('click',function(){
-            __t.markPointToMap(__t._marker,type);
+        this._marker.addEventListener('click',function(e){
+            __t.markPointToMap(__t._marker);
         });
+
         if(type){
             //地图位置搜索时，不刷新后面的配套地图信息，保存时才刷新
             $(this._wrapdom).find('._fy-loacl').html('<span>GPS坐标：'+ HubObj.lng+','+HubObj.lat +'</span>');
@@ -106,33 +115,33 @@ function DetailMap(d){
         }
         this.createPeitaoMarker();
     };
-    this.markPointToMap=function(marker,type){
+
+    this.markPointToMap=function(marker){
+
         this.markerpoint=marker.getPosition();
         HubObj.lat=this.markerpoint.lat;
         HubObj.lng=this.markerpoint.lng;
         $(this._wrapdom).find('._fy-loacl').html('<span>GPS坐标：'+ HubObj.lng+','+HubObj.lat +'</span>');
-
+        // this.createPeitaoMarker();
     };
     this.createPeitaoMarker=function(){
-
         var __t=this;
         $(this._wrapdom).find('._fy-gps').html('<span>GPS坐标：'+ HubObj.lng+','+HubObj.lat +'</span>');
         var point=new BMap.Point(HubObj.lng, HubObj.lat);
         Xl.forIn(HubObj.mapDomArr,function(i,v){
             v.value.clearOverlays();
-            v.value.centerAndZoom(point, 16);
+            v.value.centerAndZoom(point, 15);
             var marker = new BMap.Marker(point);  // 创建标注
             v.value.addOverlay(marker);
-            if(HubObj.pre_lat&&HubObj.pre_lng){
-                v.value.addEventListener("zoomend",function(e){
-                    __t.loadMapDetail(v.key);
-                });
-                v.value.addEventListener("dragend",function(e){
-                    __t.loadMapDetail(v.key);
-                });
-            }
+            v.value.addEventListener("zoomend",function(e){
+                __t.loadMapDetail(v.key);
+            });
+            v.value.addEventListener("dragend",function(e){
+                __t.loadMapDetail(v.key);
+            });
         },this);
     };
+
     this.mapTabToView=function(){
         var __t=this;
         $(this._wrapdom).find('.mapdetail-list ul li').click(function(e){
@@ -149,7 +158,7 @@ function DetailMap(d){
 
             var maptype=$(this).parents('.baidumap_toolbar').attr('data-key');
 
-            __t.loadMapDetail(maptype,__t._index);
+            __t.loadMapDetail(maptype);
             __t.loadTabEvent();
 
         });
@@ -169,6 +178,7 @@ function DetailMap(d){
 
     this.moveToLocation=function(key,index,maptype){
         var __t=this;
+
         var $_resultBox=this.$_sosomap.find('#baidumap_result');
         var soso_range=d._formsetObj.getValueByKey(maptype+'_range');
 
@@ -181,24 +191,25 @@ function DetailMap(d){
             }
         },this);
 
-
-        var localpoint=new BMap.Point(HubObj.lng,HubObj.lat);
+        var localpoint = new BMap.Point(HubObj.lng, HubObj.lat);
         var options = {
-            onSearchComplete: function(results){
-                if (__t._local.getStatus() == BMAP_STATUS_SUCCESS){
+            onSearchComplete: function (results) {
+                if (__t._local.getStatus() == BMAP_STATUS_SUCCESS) {
                     // 判断状态是否正确
 
-                    if(results.getCurrentNumPois()<1){
+                    if (results.getCurrentNumPois() < 1) {
                         $_resultBox.html('<p class="noResult">暂无相关信息，请查看其他内容吧</p>');
-                    }else{
-                        var num=0;
+                    } else {
+
+                        var num = 0;
                         //右边列表项
                         var listdata = ['<ul class="clearfix">'];
+                        for (var i = 0; i < results.getCurrentNumPois(); i++) {
 
-                        for (var i = 0; i < results.getCurrentNumPois(); i ++){
-                            var endpoint=new BMap.Point(results.getPoi(i).point.lng,results.getPoi(i).point.lat);
-                            var distance=parseInt(__t._map.getDistance(localpoint,endpoint));
-                            if(distance<soso_range) {
+
+                            var endpoint = new BMap.Point(results.getPoi(i).point.lng, results.getPoi(i).point.lat);
+                            var distance = parseInt(__t._map.getDistance(localpoint, endpoint));
+                            // if (distance <= parseInt(soso_range)) {
                                 listdata.push('<li class="maplist_' + i + '">' +
                                     '<a data-index="' + i + '" data-event="showInfoWindow" title="' + results.getPoi(i).title + '">' +
                                     '<p class="mapContent">' +
@@ -208,26 +219,42 @@ function DetailMap(d){
                                     '<p class="mapAddress">' + results.getPoi(i).address + '</p></a></li>');
 
                                 num++;
-                                var marker = __t.addMarker(results.getPoi(i).point, num,maptype);
-                                var openInfoWinFun = __t.addInfoWindow(marker, results.getPoi(i),distance);
+                                var marker = __t.addMarker(results.getPoi(i).point, num, maptype);
+                                var openInfoWinFun = __t.addInfoWindow(marker, results.getPoi(i), distance);
 
-                            }
+                            // }
                         }
                     }
                     listdata.push(['</ul>']);
                     $_resultBox.html(listdata.join(''));
 
-                    if($_resultBox.find('ul').children().length==0){
+                    if ($_resultBox.find('ul').children().length == 0) {
                         $_resultBox.html('<p class="noResult">暂无相关信息</p>');
                     }
 
-                }else{
+                } else {
                     $_resultBox.html('<p class="noResult">暂无相关信息</p>');
                 }
             }
         };
 
         this._local = new BMap.LocalSearch(this.sosoMap, options);
+
+        // if(maptype=='bus'||maptype=='ditie'){
+        //     this._local.searchInBounds(key,this.sosoMap.getBounds());
+        // }else {
+        //     var url = '/dict/lpzd/getlocal?lng=' + HubObj.lng + '&lat=' + HubObj.lat + '&range=' + soso_range;
+        //     Xl.request(Xl.GU(url), {}, function (d, isok) {
+        //         if (isok) {
+        //             var swPoint = new BMap.Point(d.SW.lng, d.SW.lat);
+        //             var nePoint = new BMap.Point(d.NE.lng, d.NE.lat);
+        //             var bounds = new BMap.Bounds(swPoint, nePoint);
+        //             __t._local.searchInBounds(key, bounds);
+        //         } else {
+        //             __t._local.searchInBounds(key, this.sosoMap.getBounds());
+        //         }
+        //     }, 0, '', 'get');
+        // }
         this._local.searchInBounds(key,this.sosoMap.getBounds());
 
     };
@@ -257,9 +284,7 @@ function DetailMap(d){
     this.addInfoWindow=function(marker,poi,distance){
 
         var name = null;
-        // infowindow的显示信息
         var infoWindowHtml = [];
-
         if(poi.type == BMAP_POI_TYPE_NORMAL){
             name = "地址：  "
         }else if(poi.type == BMAP_POI_TYPE_BUSSTOP||poi.type == BMAP_POI_TYPE_SUBSTOP){
@@ -283,12 +308,29 @@ function DetailMap(d){
     };
 
     this.loadMapDetail=function(type){
+
         var sosomapdom=type+'_mapbox';
         this.$_sosomap=$('.'+sosomapdom);
 
-        var key=$(this.$_sosomap).find('.mapdetail-list .route a.active').text();
+        var key=this.$_sosomap.find('.mapdetail-list .route a.active').text();
         this._index=this.$_sosomap.find('.mapdetail-list').attr('data-index');
+
         this.moveToLocation(key,this._index,type);
     };
+
+    this.loadPeitaoToDetail=function(){
+        var __t=this;
+
+        var types=HubObj.type;
+        var timer=setInterval(function(){
+            if(Xl.isEmpty(types)){
+                clearInterval(timer);
+            }
+            __t.loadMapDetail(types[0]);
+            types.splice(0,1);
+        },1000);
+
+    };
     this.init();
+
 }
